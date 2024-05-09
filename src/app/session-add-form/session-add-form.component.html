@@ -1,0 +1,71 @@
+<!-- session-add-form.component.html -->
+<br><br>
+<section>
+    <header>
+      <h2>Ajouter une session de formation</h2>
+    </header>
+
+
+
+
+
+    <form (ngSubmit)="onSubmit()" >
+      <ul>
+        <li>
+          <label for="name">Nom :</label>
+          <input type="text" id="name" name="name" [(ngModel)]="session.name"  ngModel required #b=ngModel>
+          <!-- Adress Required -->
+          <!--<div *ngIf="a.invalid && a.touched">The adress is required</div>-->
+          <div *ngIf="b.invalid && (b.touched || b.dirty)" class="text-style">
+          <div *ngIf="b.errors?.['required']">The adress is required</div>
+          <div *ngIf="b.errors?.['minlength']">Minimum length is 4 characters</div>
+      </div>
+        </li>
+        <li>
+          <label for="track">Track :</label>
+          <select id="track" name="track" [(ngModel)]="session.track" ngModel required #c=ngModel>
+            <option *ngFor="let track of tracks" [value]="track">{{ track }}</option>
+          </select>
+          <div *ngIf="c.invalid && (c.touched || c.dirty)" class="text-style">
+            <div *ngIf="c.errors?.['required']">The adress is required</div>
+          </div>
+        </li>
+        <li>
+          <label for="date">Date :</label>
+          <input type="date" id="date" name="date" [(ngModel)]="session.date" ngModel required #d=ngModel>
+          <div *ngIf="d.invalid && (d.touched || d.dirty)" class="text-style">
+            <div *ngIf="d.errors?.['required']">The adress is required</div>
+          </div>
+        </li>
+        <li>
+          <label for="duree">Durée :</label>
+          <input type="number" id="duree" name="duree" [(ngModel)]="session.duree" ngModel required #e=ngModel min="1">
+          <div *ngIf="e.invalid && (e.touched || e.dirty)" class="text-style">
+            <div *ngIf="e.errors?.['required']">The adress is required</div>
+          </div>
+        </li>
+        <li>
+          <label for="address">Adresse :</label>
+          <input type="text" id="address" name="address" [(ngModel)]="session.address" minlength="4" ngModel required #a=ngModel>
+          <!-- Adress Required -->
+          <!--<div *ngIf="a.invalid && a.touched">The adress is required</div>-->
+          <div *ngIf="a.invalid && (a.touched || a.dirty)" class="text-style">
+          <div *ngIf="a.errors?.['required']">The adress is required</div>
+          <div *ngIf="a.errors?.['minlength']">Minimum length is 4 characters</div>
+      </div>
+        </li>
+        <li>
+          <label for="participants">Participants :</label>
+          <input type="number" id="participants" name="participants" [(ngModel)]="session.Participants" ngModel required #f=ngModel min="0" max="20">
+          <div *ngIf="f.invalid && (f.touched || f.dirty)" class="text-style">
+            <div *ngIf="f.errors?.['required']">The Participants is required</div>
+          </div>
+        </li>
+        <li>
+          <label for="isCompleted">Session complétée :</label>
+          <input type="checkbox" id="isCompleted" name="isCompleted" [(ngModel)]="session.isCompleted">
+      </li>
+      </ul>
+      <button type="submit" [disabled]="a.invalid || b.invalid || c.invalid || d.invalid || e.invalid || f.invalid">Ajouter</button>
+    </form>
+  </section>

@@ -1,0 +1,31 @@
+<!--<div *ngFor="let session of sessions" [ngClass]="session.name === 'Web' ? 'web-session' : 'mobile-session'">
+    <app-session-item [session]="session" onchange="getTotalParticipants()"></app-session-item>
+</div>-->
+  <header>
+    <h1>Liste des sessions de formation </h1>
+    <p class="description">Suivre les sessions que je veux participer.</p>
+  </header>
+  <section>
+    <app-session-item [isAdmin]="isAdmin"
+    *ngFor="let sessionItem of sessions"
+    [session]="sessionItem" 
+    [ngClass]="{'session-web': sessionItem.name === 'Web', 'session-mobile': sessionItem.name === 'Mobile'}"
+    ></app-session-item>
+    <!-- EXTRA -->
+    <br>    
+    
+
+  </section>
+  <h2 class="text-style">Nombre total de participants : {{ getTotalParticipants() }}</h2>
+  <footer>
+    <a routerLink="/admin" routerLinkActive="active" style="border-radius: 50%;   background-color: rgb(255, 115, 0); /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;">
+    <img src="assets/admin3.png" class="icon" style="filter: drop-shadow(0px 1000px 0 white); transform: translateY(-1000px); " />
+    </a>
+  </footer>

@@ -1,0 +1,51 @@
+<div>
+    <h2>{{ session.name }}</h2>
+    <ul>
+
+    <li>{{ session.track }}</li>
+
+    <li>Prévue le : {{ session.date | date: 'MMMM d, yyyy'  }}</li>
+    <li>Durée : {{ session.duree }} Jour</li>
+    <li>Adresse : {{ session.address }}</li>
+    <li> Encore {{ 20 - session.Participants }} Place disponible</li>
+    <li> {{ session.Participants }} Participants</li>
+    </ul>
+    <div class="tools">
+    <a class="delete" *ngIf="!isAdmin"> Details </a>
+
+    <!--[disabled]="isCompleted"-->
+    <!--session.Participants < 20-->
+    <!--[appInscriptionDisabled]="isCompleted"-->
+    <!-- *ngIf="!isCompleted" -->
+    <a class="inscrire" (click)="inscrire();" inscrire.link-is-disabled="!isCompleted && session.Participants < 20" *ngIf="!isCompleted && session.Participants < 20 && !isAdmin"> Inscription </a>
+    <!--<button *ngIf="!isSessionComplete()" (click)="inscrire()">Inscription</button>-->
+    
+    <a class="partager" *ngIf="!isAdmin"> Partager </a>
+    
+    <a *ngIf="isAdmin" [routerLink]="['../edit', session.id]" routerLinkActive="active" class="inscrire">Modification</a>
+    <a *ngIf="isAdmin" class="delete" (click)="onDelete()">Suppression</a>
+    
+    
+    <!--<a>{{name}}</a>-->
+    <!--<button [title]="name">Hero</button>-->
+    <!--<p [textContent]="name"></p>-->
+    
+    
+      <!-- Utilisation du PropertyBinding sur un élément de DOM -->
+      <!--<div [style.color]="couleur">Texte avec couleur</div>-->
+    
+      <!-- Utilisation du PropertyBinding sur une directive -->
+      <!--<p [ngStyle]="{ 'color': couleur }">NgStyle</p>-->
+    
+    </div>
+    
+    </div>
+    
+        <!--<section>
+            <header>
+            
+            <h1> Liste des sessions de formation</h1>
+            <p class="description"> Suivre les sessions que je peux
+            participer</p>
+            </header>
+          </section>-->
